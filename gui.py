@@ -22,64 +22,65 @@ def mainmenu():
 			
 def game(mode):
 	layout = [[gui.T('Move by: ', key='move')],
-            [gui.Button(key='m00'), gui.Button(key='m01'), gui.Button(key='m02')],
-            [gui.Button(key='m10'), gui.Button(key='m11'), gui.Button(key='m12')],
-            [gui.Button(key='m20'), gui.Button(key='m21'), gui.Button(key='m22')],
+            [gui.Button(key='board00'), gui.Button(key='board01'), gui.Button(key='board02')],
+            [gui.Button(key='board10'), gui.Button(key='board11'), gui.Button(key='board12')],
+            [gui.Button(key='board20'), gui.Button(key='board21'), gui.Button(key='board22')],
             [gui.Exit()]]
 	game = gui.Window('TicTacToe', layout, location=(0,0), size=(1000,1000))
 	# Start
-	game_param = [['','',''],['','',''],['','',''], 1, mode, ''] # game matrix, move, mode, result of logic check
+	game_param = [['','',''],['','',''],['','',''], 1, mode, '', 0] # game matrix, move, mode, result of logic check, winner
 	while True:
 		event, values = game.read()
 		if event in (gui.WIN_CLOSED, 'Exit'):
 			game.close()
 			mainmenu()
-		if event in ('m00'):
-			print("test")
+		if event in ('board00'):
 			game_param = logic.move(0, 0, game_param) # current pos and game_param matrix
 			if game_param[5] != '':
-				game['m00'].update(game_param[5])
+				game['board00'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m01'):
+		if event in ('board01'):
 			game_param = logic.move(0, 1, game_param)
 			if game_param[5] != '':
-				game['m01'].update(game_param[5])
+				game['board01'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m02'):
+		if event in ('board02'):
 			game_param = logic.move(0, 2, game_param)
 			if game_param[5] != '':
-				game['m02'].update(game_param[5])
+				game['board02'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m10'):
+		if event in ('board10'):
 			game_param = logic.move(1, 0, game_param)
 			if game_param[5] != '':
-				game['m10'].update(game_param[5])
+				game['board10'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m11'):
+		if event in ('board11'):
 			game_param = logic.move(1, 1, game_param)
 			if game_param[5] != '':
-				game['m11'].update(game_param[5])
+				game['board11'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m12'):
+		if event in ('board12'):
 			game_param = logic.move(1, 2, game_param)
 			if game_param[5] != '':
-				game['m12'].update(game_param[5])
+				game['board12'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m20'):
+		if event in ('board20'):
 			game_param = logic.move(2, 0, game_param)
 			if game_param[5] != '':
-				game['m20'].update(game_param[5])
+				game['board20'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m21'):
+		if event in ('board21'):
 			game_param = logic.move(2, 1, game_param)
 			if game_param[5] != '':
-				game['m21'].update(game_param[5])
+				game['board21'].update(game_param[5])
 				game_param[5] = ''
-		if event in ('m22'):
+		if event in ('board22'):
 			game_param = logic.move(2, 2, game_param)
 			if game_param[5] != '':
-				game['m22'].update(game_param[5])
+				game['board22'].update(game_param[5])
 				game_param[5] = ''
+		if game_param[6] > 0:
+			game['move'].update('We have a winner!')
 
 def settings():
 	pass
